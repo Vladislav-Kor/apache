@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'adminEmail' => 'admin@example.com',
-    'senderEmail' => 'noreply@example.com',
-    'senderName' => 'Example.com mailer',
+    'dbPswd' => 'orbita91.wxy-',
+    'dsn' => 'odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Apache24\htdocs\web\document\dabase.mdb',
+    'username' => 'Admin'
 ];

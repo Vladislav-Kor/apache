@@ -5,19 +5,20 @@ namespace app\models;
 
 use PDOException;
 use yii\db\mssql\PDO;
+use app\repositories\Hydrator;
+use app\repositories\PoliceRepositories;
+
 
 class Db
 {
     public function result(){
         $res = '';
-        $dsn = 'odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Apache24\htdocs\web\document\dabase.mdb';
-        $username = 'Admin';
-        $password = 'orbita91.wxy-';
 
         try {
-            $conn = new PDO($dsn, $username, $password);
+            $conn = new PDO(\Yii::$app->params['dsn'], \Yii::$app->params['username'], \Yii::$app->params['dbPswd']);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            var_dump(new PoliceRepositories(new Hydrator()));
             $sql = "SELECT * FROM police";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
