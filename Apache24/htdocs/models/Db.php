@@ -8,7 +8,6 @@ use yii\db\mssql\PDO;
 use app\repositories\Hydrator;
 use app\repositories\PoliceRepositories;
 
-
 class Db
 {
     public function result(){
@@ -18,7 +17,7 @@ class Db
             $conn = new PDO(\Yii::$app->params['dsn'], \Yii::$app->params['username'], \Yii::$app->params['dbPswd']);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            var_dump(new PoliceRepositories(new Hydrator()));
+            var_dump((new PoliceRepositories(new Hydrator()))->getPolice());
             $sql = "SELECT * FROM police";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
