@@ -66,7 +66,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $madal = new Db();
-        $res = $madal->result();
+        $res = $madal->result($this);
         return $this->render('index', ['value'=>$res]);
     }
 
