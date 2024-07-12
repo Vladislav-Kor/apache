@@ -5,11 +5,9 @@
     https://metanit.com/php/tutorial/1.2.php
 
 # Apache
-  https://oblako.kz/help/windows/ustanovka-php-apache-na-windows
-
-  c:\Apache24\bin\httpd -k install
-  
-  c:\Apache24\bin\httpd -k restart
+    https://oblako.kz/help/windows/ustanovka-php-apache-na-windows
+    c:/Apache24/bin/httpd -k install
+    c:/Apache24/bin/httpd -k restart
 
 # php-ini
     ; работа с odbc
