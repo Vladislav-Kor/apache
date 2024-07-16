@@ -19,44 +19,50 @@ use app\entities\Date;
 class Police implements \JsonSerializable
 {
     /**
-     * @var ObjectId
+     * @var ?ObjectId
      */
     private $id;
 
     /**
-     * @var BuildingName
+     * @var ?BuildingName
      */
     private $building;
 
     /**
-     * @var FloorName
+     * @var ?FloorName
      */
     private $floor;
 
     /**
-     * @var RoomName
+     * @var ?RoomName
      */
     private $room;
 
     /**
-     * @var Date
+     * @var ?Date
      */
     private $date;
 
     /**
-     * @var PoliceStatus
+     * @var ?PoliceStatus
      */
     private $status;
+
+    /**
+     * @var ?GuestStatus
+     */
+    private $guestStatus;
 
     public function jsonSerialize(): array
     {
         return [
             'id' => $this->id->getValue(),
-            'building' =>  $this->building->getValue(),
-            'floor' => $this->floor->getValue(),
-            'room' => $this->room->getValue(),
-            // 'date' => $this->date->getValue(),
-            'status' => $this->status->getTranslator(),
+            'building' =>  ($this->building===null)?'':$this->building->getValue(),
+            'floor' => ($this->floor===null)?'':$this->floor->getValue(),
+            'room' => ($this->room===null)?'':$this->room->getValue(),
+            'date' => $this->date->getValue(),
+            'guestStatus' => ($this->guestStatus===null)?false:$this->guestStatus->getValue(),
+            'status' => ($this->status===null)?'':$this->status->getTranslator(),
         ];
     }
 }

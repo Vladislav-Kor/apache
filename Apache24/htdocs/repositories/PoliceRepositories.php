@@ -78,9 +78,40 @@ class PoliceRepositories
         }
         
         foreach ($array as $obj) {
-            // var_dump($obj);
+            
             $dto = new PoliceRepositoriesDto($obj);
-            // var_dump($dto->status.'<br>');
+            
+            $res[] = $this->hydrator->hydrate(Police::class, [
+                'id' => new ObjectId($dto->id),
+                'building' => new BuildingName($dto->building),
+                'floor' => new FloorName($dto->floor),
+                'room' => new RoomName($dto->room),
+                // 'date' => new \Date($dto->date),
+                'status' => new PoliceStatus($dto->status),
+            ]);
+        }
+
+        return $res;
+    }
+
+    public function getPoliceByRoom(RoomName $name): array
+    {
+        $res = [];
+        $array = [];
+        try {
+            $connect = $this->setting->prepare("SELECT TOP 1 * FROM `police` WHERE `room_name`=:param ORDER BY `id` DESC");
+            $connect->execute([":param"=>$name->getValue()]);
+            while ($row = $connect->fetch(PDO::FETCH_ASSOC)) {
+                $array[] = $row;
+            }
+        } catch (PDOException $e) {
+            throw new PDOException("Ошибка: " . mb_convert_encoding($e->getMessage(), "utf-8", "windows-1251"));
+        }
+        
+        foreach ($array as $obj) {
+            
+            $dto = new PoliceRepositoriesDto($obj);
+            
             $res[] = $this->hydrator->hydrate(Police::class, [
                 'id' => new ObjectId($dto->id),
                 'building' => new BuildingName($dto->building),

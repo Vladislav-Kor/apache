@@ -17,9 +17,9 @@ AppAsset::register($this);
     </head>
     <body class="d-flex flex-column h-100">
         <h1>Service-Lock</h1>
-        <?php $this->beginBody() ?>
+        <?php $this->beginBody() ?><?= $content ?>
         <div class="container">
-            <?= $content ?>
+            
         </div>
         <?php $this->endBody() ?>
     </body>

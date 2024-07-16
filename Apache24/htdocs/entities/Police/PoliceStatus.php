@@ -59,8 +59,14 @@ class PoliceStatus
             case self::STATUS_CLEAR:
                 return 'Нужна уборка';
                 break;
+            case self::STATUS_CLEARUP:
+                return 'не нужна уборка';
+                break;
             case self::STATUS_NOT_DISTURB:
                 return 'Не беспокоить';
+                break;
+            case self::STATUS_DISTURB:
+                return 'можно беспокоить';
                 break;
             default:
                 return self::NOT_STATUS;
